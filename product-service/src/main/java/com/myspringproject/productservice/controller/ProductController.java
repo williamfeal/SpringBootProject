@@ -12,10 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-public class  ProductController {
+public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
@@ -37,7 +40,11 @@ public class  ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.ok().build();
     }
-// other methods
+
+    @PutMapping("/{id}/decreaseQuantity/{quantity}")
+    public ResponseEntity<Product> decreaseProductQuantity(@PathVariable Long id, @PathVariable Integer quantity) {
+        return ResponseEntity.ok(productService.decreaseProductQuantity(id, quantity));
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -45,4 +52,3 @@ public class  ProductController {
         return ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
     }
 }
-

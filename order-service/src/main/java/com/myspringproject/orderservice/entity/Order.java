@@ -1,25 +1,21 @@
 package com.myspringproject.orderservice.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String name;
-    private String description;
-    private Integer quantity;
+    private Long userId;
     private Long productId;
+    private int quantity;
+    private double total;  // Nuevo campo
+    private double discount;  // Nuevo campo
 
-    // Add getter and setter methods
+    // Getters y setters
 
     public Long getId() {
         return id;
@@ -29,28 +25,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getProductId() {
@@ -59,5 +39,29 @@ public class Order {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getTotal() {  // Nuevo getter
+        return total;
+    }
+
+    public void setTotal(double total) {  // Nuevo setter
+        this.total = total;
+    }
+
+    public double getDiscount() {  // Nuevo getter
+        return discount;
+    }
+
+    public void setDiscount(double discount) {  // Nuevo setter
+        this.discount = discount;
     }
 }

@@ -7,6 +7,7 @@ public class ProductDto {
     private String name;
     private String description;
     private BigDecimal price;
+    private int quantity;  // Nuevo campo
 
     // Constructor vacío, getters y setters
 
@@ -42,5 +43,13 @@ public class ProductDto {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getQuantity() {  // Nuevo getter
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {  // Nuevo setter
+        this.quantity = quantity;
     }
 }

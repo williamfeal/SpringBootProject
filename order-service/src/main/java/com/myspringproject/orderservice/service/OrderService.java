@@ -25,6 +25,14 @@ public class OrderService {
         // puedes validar que el producto exista antes de crear la orden.
         // Si no existe el producto, puedes lanzar una excepción.
 
+        // Ahora también puedes verificar si hay suficiente cantidad del producto en stock
+        if (productDto.getQuantity() < order.getQuantity()) {
+            throw new RuntimeException("Not enough product in stock");
+        }
+
+        // Si hay suficiente producto en stock, disminuimos la cantidad del producto
+        productServiceClient.decreaseProductQuantity(order.getProductId(), order.getQuantity());
+
         return orderRepository.save(order);
     }
 

@@ -1,7 +1,6 @@
 package com.myspringproject.productservice.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
@@ -10,14 +9,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @NotNull(message = "Name cannot be null")
     private String name;
+    private double price;
+    private int inventory;  // Nuevo campo
 
-    @NotNull(message = "Price cannot be null")
-    private Double price;
+    private Integer quantity;
 
-    // Getters and Setters
+    // Getters y setters
 
     public Long getId() {
         return id;
@@ -35,12 +33,27 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
-}
 
+    public int getInventory() {  // Nuevo getter
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {  // Nuevo setter
+        this.inventory = inventory;
+    }
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+}
